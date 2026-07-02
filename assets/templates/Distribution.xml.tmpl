@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="1">
+    <title>{{ .Title }}</title>
+    {{ if .HasLicense }}<license file="license.txt" mime-type="text/plain"/>{{ end }}
+    <options customize="never" require-scripts="false"/>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <pkg-ref id="{{ .ComponentPkgID }}"/>
+    <choices-outline>
+        <line choice="default">
+            <line choice="{{ .ComponentPkgID }}"/>
+        </line>
+    </choices-outline>
+    <choice id="default"/>
+    <choice id="{{ .ComponentPkgID }}" visible="false">
+        <pkg-ref id="{{ .ComponentPkgID }}"/>
+    </choice>
+    <pkg-ref id="{{ .ComponentPkgID }}" version="0" auth="Root">component.pkg</pkg-ref>
+</installer-gui-script>
